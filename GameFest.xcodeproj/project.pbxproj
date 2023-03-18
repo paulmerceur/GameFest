@@ -8,17 +8,31 @@
 
 /* Begin PBXBuildFile section */
 		84063A9B29C3351A00535547 /* GameFestApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84063A9A29C3351A00535547 /* GameFestApp.swift */; };
-		84063A9D29C3351A00535547 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84063A9C29C3351A00535547 /* ContentView.swift */; };
+		84063A9D29C3351A00535547 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84063A9C29C3351A00535547 /* LoginView.swift */; };
 		84063A9F29C3352100535547 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84063A9E29C3352100535547 /* Assets.xcassets */; };
 		84063AA229C3352100535547 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84063AA129C3352100535547 /* Preview Assets.xcassets */; };
+		84063AA929C33BD300535547 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84063AA829C33BD300535547 /* SignUpView.swift */; };
+		84C50A9E29C44D9F00B0D2B6 /* Color+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C50A9D29C44D9F00B0D2B6 /* Color+Extensions.swift */; };
+		84C50AA029C4781E00B0D2B6 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C50A9F29C4781E00B0D2B6 /* HomeView.swift */; };
+		84EA934829C53DE7005F63DD /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EA934729C53DE7005F63DD /* LoginViewModel.swift */; };
+		84EA934C29C5465C005F63DD /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EA934B29C5465C005F63DD /* LoginResponse.swift */; };
+		84EA935229C55365005F63DD /* SignUpResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EA935129C55365005F63DD /* SignUpResponse.swift */; };
+		84EA935429C5546C005F63DD /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EA935329C5546C005F63DD /* SignUpViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		84063A9729C3351A00535547 /* GameFest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GameFest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84063A9A29C3351A00535547 /* GameFestApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameFestApp.swift; sourceTree = "<group>"; };
-		84063A9C29C3351A00535547 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		84063A9C29C3351A00535547 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		84063A9E29C3352100535547 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		84063AA129C3352100535547 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		84063AA829C33BD300535547 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		84C50A9D29C44D9F00B0D2B6 /* Color+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extensions.swift"; sourceTree = "<group>"; };
+		84C50A9F29C4781E00B0D2B6 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		84EA934729C53DE7005F63DD /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		84EA934B29C5465C005F63DD /* LoginResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
+		84EA935129C55365005F63DD /* SignUpResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpResponse.swift; sourceTree = "<group>"; };
+		84EA935329C5546C005F63DD /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,8 +65,11 @@
 		84063A9929C3351A00535547 /* GameFest */ = {
 			isa = PBXGroup;
 			children = (
+				84EA934D29C5490B005F63DD /* Models */,
+				84EA934E29C54915005F63DD /* ViewModels */,
 				84063A9A29C3351A00535547 /* GameFestApp.swift */,
-				84063A9C29C3351A00535547 /* ContentView.swift */,
+				84EA935029C5492C005F63DD /* Views */,
+				84EA934F29C54925005F63DD /* Extensions */,
 				84063A9E29C3352100535547 /* Assets.xcassets */,
 				84063AA029C3352100535547 /* Preview Content */,
 			);
@@ -65,6 +82,42 @@
 				84063AA129C3352100535547 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		84EA934D29C5490B005F63DD /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				84EA934B29C5465C005F63DD /* LoginResponse.swift */,
+				84EA935129C55365005F63DD /* SignUpResponse.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		84EA934E29C54915005F63DD /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				84EA934729C53DE7005F63DD /* LoginViewModel.swift */,
+				84EA935329C5546C005F63DD /* SignUpViewModel.swift */,
+				84C50A9F29C4781E00B0D2B6 /* HomeView.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		84EA934F29C54925005F63DD /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				84C50A9D29C44D9F00B0D2B6 /* Color+Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		84EA935029C5492C005F63DD /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				84063A9C29C3351A00535547 /* LoginView.swift */,
+				84063AA829C33BD300535547 /* SignUpView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,8 +190,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				84063A9D29C3351A00535547 /* ContentView.swift in Sources */,
+				84063A9D29C3351A00535547 /* LoginView.swift in Sources */,
+				84063AA929C33BD300535547 /* SignUpView.swift in Sources */,
+				84EA934829C53DE7005F63DD /* LoginViewModel.swift in Sources */,
 				84063A9B29C3351A00535547 /* GameFestApp.swift in Sources */,
+				84EA935429C5546C005F63DD /* SignUpViewModel.swift in Sources */,
+				84EA935229C55365005F63DD /* SignUpResponse.swift in Sources */,
+				84C50AA029C4781E00B0D2B6 /* HomeView.swift in Sources */,
+				84C50A9E29C44D9F00B0D2B6 /* Color+Extensions.swift in Sources */,
+				84EA934C29C5465C005F63DD /* LoginResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
