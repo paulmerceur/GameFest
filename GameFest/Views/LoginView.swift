@@ -13,6 +13,8 @@ struct LoginView: View {
     
     @StateObject private var viewModel = LoginViewModel()
     
+    @State private var isAdmin = false
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -52,15 +54,20 @@ struct LoginView: View {
                 
                 Spacer()
                 
-                NavigationLink("", destination: HomeView(), isActive: $viewModel.isLoggedIn)
-                    .hidden()
+                if viewModel.isAdmin {
+                    NavigationLink("", destination: AdminDashboardView(), isActive: $viewModel.isLoggedIn)
+                        .hidden()
+                } else {
+                    NavigationLink("", destination: BenevoleDashboardView(), isActive: $viewModel.isLoggedIn)
+                        .hidden()
+                }
             }
         }
     }
     
-    struct LoginView_Previews: PreviewProvider {
+    /*struct LoginView_Previews: PreviewProvider {
         static var previews: some View {
             LoginView()
         }
-    }
+    }*/
 }

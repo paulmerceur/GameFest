@@ -12,8 +12,10 @@
 		84063A9F29C3352100535547 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84063A9E29C3352100535547 /* Assets.xcassets */; };
 		84063AA229C3352100535547 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84063AA129C3352100535547 /* Preview Assets.xcassets */; };
 		84063AA929C33BD300535547 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84063AA829C33BD300535547 /* SignUpView.swift */; };
+		84B6CF8829CCC17F00503E09 /* AssignmentListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B6CF8729CCC17F00503E09 /* AssignmentListView.swift */; };
+		84B6CF8A29CCF84800503E09 /* AdminDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B6CF8929CCF84800503E09 /* AdminDashboardView.swift */; };
 		84C50A9E29C44D9F00B0D2B6 /* Color+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C50A9D29C44D9F00B0D2B6 /* Color+Extensions.swift */; };
-		84C50AA029C4781E00B0D2B6 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C50A9F29C4781E00B0D2B6 /* HomeView.swift */; };
+		84C50AA029C4781E00B0D2B6 /* BenevoleDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C50A9F29C4781E00B0D2B6 /* BenevoleDashboardView.swift */; };
 		84EA934829C53DE7005F63DD /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EA934729C53DE7005F63DD /* LoginViewModel.swift */; };
 		84EA934C29C5465C005F63DD /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EA934B29C5465C005F63DD /* LoginResponse.swift */; };
 		84EA935229C55365005F63DD /* SignUpResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EA935129C55365005F63DD /* SignUpResponse.swift */; };
@@ -27,8 +29,10 @@
 		84063A9E29C3352100535547 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		84063AA129C3352100535547 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		84063AA829C33BD300535547 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		84B6CF8729CCC17F00503E09 /* AssignmentListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentListView.swift; sourceTree = "<group>"; };
+		84B6CF8929CCF84800503E09 /* AdminDashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminDashboardView.swift; sourceTree = "<group>"; };
 		84C50A9D29C44D9F00B0D2B6 /* Color+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extensions.swift"; sourceTree = "<group>"; };
-		84C50A9F29C4781E00B0D2B6 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		84C50A9F29C4781E00B0D2B6 /* BenevoleDashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BenevoleDashboardView.swift; sourceTree = "<group>"; };
 		84EA934729C53DE7005F63DD /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		84EA934B29C5465C005F63DD /* LoginResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
 		84EA935129C55365005F63DD /* SignUpResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpResponse.swift; sourceTree = "<group>"; };
@@ -98,7 +102,6 @@
 			children = (
 				84EA934729C53DE7005F63DD /* LoginViewModel.swift */,
 				84EA935329C5546C005F63DD /* SignUpViewModel.swift */,
-				84C50A9F29C4781E00B0D2B6 /* HomeView.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -114,8 +117,11 @@
 		84EA935029C5492C005F63DD /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				84C50A9F29C4781E00B0D2B6 /* BenevoleDashboardView.swift */,
 				84063A9C29C3351A00535547 /* LoginView.swift */,
 				84063AA829C33BD300535547 /* SignUpView.swift */,
+				84B6CF8729CCC17F00503E09 /* AssignmentListView.swift */,
+				84B6CF8929CCF84800503E09 /* AdminDashboardView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -192,11 +198,13 @@
 			files = (
 				84063A9D29C3351A00535547 /* LoginView.swift in Sources */,
 				84063AA929C33BD300535547 /* SignUpView.swift in Sources */,
+				84B6CF8A29CCF84800503E09 /* AdminDashboardView.swift in Sources */,
 				84EA934829C53DE7005F63DD /* LoginViewModel.swift in Sources */,
 				84063A9B29C3351A00535547 /* GameFestApp.swift in Sources */,
 				84EA935429C5546C005F63DD /* SignUpViewModel.swift in Sources */,
+				84B6CF8829CCC17F00503E09 /* AssignmentListView.swift in Sources */,
 				84EA935229C55365005F63DD /* SignUpResponse.swift in Sources */,
-				84C50AA029C4781E00B0D2B6 /* HomeView.swift in Sources */,
+				84C50AA029C4781E00B0D2B6 /* BenevoleDashboardView.swift in Sources */,
 				84C50A9E29C44D9F00B0D2B6 /* Color+Extensions.swift in Sources */,
 				84EA934C29C5465C005F63DD /* LoginResponse.swift in Sources */,
 			);

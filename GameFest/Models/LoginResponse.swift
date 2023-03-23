@@ -9,7 +9,7 @@ import Foundation
 
 struct LoginResponse: Codable {
     let session: Session
-    let user: User
+    let user_infos: UserInfos
     let error: String?
 
     struct Session: Codable {
@@ -45,8 +45,6 @@ struct LoginResponse: Codable {
         let identities: [Identity]
         let createdAt: String
         let updatedAt: String
-        let prenom: String
-        let nom: String
 
         enum CodingKeys: String, CodingKey {
             case id
@@ -63,6 +61,16 @@ struct LoginResponse: Codable {
             case identities
             case createdAt = "created_at"
             case updatedAt = "updated_at"
+        }
+    }
+    
+    struct UserInfos: Codable {
+        let nom: String
+        let prenom: String
+        
+        enum CodingKeys: String, CodingKey {
+            case nom
+            case prenom
         }
     }
 

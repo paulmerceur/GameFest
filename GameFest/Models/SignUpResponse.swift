@@ -24,8 +24,8 @@ struct SignUpResponse: Codable {
         let identities: [Identity]
         let created_at: String
         let updated_at: String
-        let prenom: String
         let nom: String
+        let prenom: String
     }
 
     struct AppMetadata: Codable {

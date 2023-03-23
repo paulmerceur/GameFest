@@ -14,6 +14,7 @@ class LoginViewModel: ObservableObject {
     @Published var errorMessage: String = ""
     
     @Published var isLoggedIn: Bool = false
+    @Published var isAdmin: Bool = false
 
     private var cancellables = Set<AnyCancellable>()
 
@@ -39,10 +40,15 @@ class LoginViewModel: ObservableObject {
             URLSession.shared.dataTask(with: request) { data, response, error in
                 if let data = data {
                     do {
+                        if let jsonString = String(data: data, encoding: .utf8) {
+                                    print("JSON reçu : \(jsonString)")
+                                }
+
                         let decodedResponse = try JSONDecoder().decode(LoginResponse.self, from: data)
 
                         if decodedResponse.error == nil {
                             DispatchQueue.main.async {
+                                self.isAdmin = decodedResponse.session.user.role == "admin"
                                 self.isLoggedIn = true
                             }
                         } else {
