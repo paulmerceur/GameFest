@@ -13,8 +13,6 @@ struct LoginView: View {
     
     @StateObject private var viewModel = LoginViewModel()
     
-    @State private var isAdmin = false
-    
     var body: some View {
         NavigationView {
             VStack {
@@ -25,6 +23,7 @@ struct LoginView: View {
                     .padding(.top)
                 
                 TextField("Email", text: $viewModel.email)
+                    .autocapitalization(.none)
                     .padding()
                     .background(Color(.systemGray6))
                     .cornerRadius(8)
@@ -58,16 +57,19 @@ struct LoginView: View {
                     NavigationLink("", destination: AdminDashboardView(), isActive: $viewModel.isLoggedIn)
                         .hidden()
                 } else {
-                    NavigationLink("", destination: BenevoleDashboardView(), isActive: $viewModel.isLoggedIn)
+                    NavigationLink("", destination: BenevoleDashboardView(benevole: viewModel.benevole), isActive: $viewModel.isLoggedIn)
                         .hidden()
                 }
             }
         }
+        .navigationBarTitle("")
+        .navigationBarBackButtonHidden(true)
+        .navigationBarHidden(true)
     }
     
-    /*struct LoginView_Previews: PreviewProvider {
-        static var previews: some View {
-            LoginView()
-        }
-    }*/
+//    struct LoginView_Previews: PreviewProvider {
+//        static var previews: some View {
+//            LoginView()
+//        }
+//    }
 }

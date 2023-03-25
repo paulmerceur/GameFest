@@ -12,7 +12,15 @@
 		84063A9F29C3352100535547 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84063A9E29C3352100535547 /* Assets.xcassets */; };
 		84063AA229C3352100535547 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84063AA129C3352100535547 /* Preview Assets.xcassets */; };
 		84063AA929C33BD300535547 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84063AA829C33BD300535547 /* SignUpView.swift */; };
-		84B6CF8829CCC17F00503E09 /* AssignmentListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B6CF8729CCC17F00503E09 /* AssignmentListView.swift */; };
+		84068B6B29CDBF0600F3E360 /* BenevoleDashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84068B6A29CDBF0500F3E360 /* BenevoleDashboardViewModel.swift */; };
+		84068B6D29CDC90E00F3E360 /* ModifierAffectationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84068B6C29CDC90E00F3E360 /* ModifierAffectationView.swift */; };
+		84068B6F29CDC94B00F3E360 /* ModifierDisponibilitesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84068B6E29CDC94B00F3E360 /* ModifierDisponibilitesView.swift */; };
+		84068B7129CDCD1300F3E360 /* AffectationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84068B7029CDCD1300F3E360 /* AffectationViewModel.swift */; };
+		84068B7329CDE04900F3E360 /* AffectationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84068B7229CDE04900F3E360 /* AffectationModel.swift */; };
+		84068B7529CDE2A800F3E360 /* ModifierAffectationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84068B7429CDE2A800F3E360 /* ModifierAffectationViewModel.swift */; };
+		84068B7729CDE3C600F3E360 /* AffectationListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84068B7629CDE3C600F3E360 /* AffectationListViewModel.swift */; };
+		84068B7929CE05DF00F3E360 /* BenevoleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84068B7829CE05DF00F3E360 /* BenevoleModel.swift */; };
+		8432E90029CF092E00B648A7 /* AuthRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8432E8FF29CF092E00B648A7 /* AuthRequests.swift */; };
 		84B6CF8A29CCF84800503E09 /* AdminDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B6CF8929CCF84800503E09 /* AdminDashboardView.swift */; };
 		84C50A9E29C44D9F00B0D2B6 /* Color+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C50A9D29C44D9F00B0D2B6 /* Color+Extensions.swift */; };
 		84C50AA029C4781E00B0D2B6 /* BenevoleDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C50A9F29C4781E00B0D2B6 /* BenevoleDashboardView.swift */; };
@@ -29,7 +37,15 @@
 		84063A9E29C3352100535547 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		84063AA129C3352100535547 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		84063AA829C33BD300535547 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
-		84B6CF8729CCC17F00503E09 /* AssignmentListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentListView.swift; sourceTree = "<group>"; };
+		84068B6A29CDBF0500F3E360 /* BenevoleDashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BenevoleDashboardViewModel.swift; sourceTree = "<group>"; };
+		84068B6C29CDC90E00F3E360 /* ModifierAffectationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifierAffectationView.swift; sourceTree = "<group>"; };
+		84068B6E29CDC94B00F3E360 /* ModifierDisponibilitesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifierDisponibilitesView.swift; sourceTree = "<group>"; };
+		84068B7029CDCD1300F3E360 /* AffectationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AffectationViewModel.swift; sourceTree = "<group>"; };
+		84068B7229CDE04900F3E360 /* AffectationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AffectationModel.swift; sourceTree = "<group>"; };
+		84068B7429CDE2A800F3E360 /* ModifierAffectationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifierAffectationViewModel.swift; sourceTree = "<group>"; };
+		84068B7629CDE3C600F3E360 /* AffectationListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AffectationListViewModel.swift; sourceTree = "<group>"; };
+		84068B7829CE05DF00F3E360 /* BenevoleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BenevoleModel.swift; sourceTree = "<group>"; };
+		8432E8FF29CF092E00B648A7 /* AuthRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRequests.swift; sourceTree = "<group>"; };
 		84B6CF8929CCF84800503E09 /* AdminDashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminDashboardView.swift; sourceTree = "<group>"; };
 		84C50A9D29C44D9F00B0D2B6 /* Color+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extensions.swift"; sourceTree = "<group>"; };
 		84C50A9F29C4781E00B0D2B6 /* BenevoleDashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BenevoleDashboardView.swift; sourceTree = "<group>"; };
@@ -69,10 +85,11 @@
 		84063A9929C3351A00535547 /* GameFest */ = {
 			isa = PBXGroup;
 			children = (
+				8432E8FE29CF082800B648A7 /* APIRequests */,
 				84EA934D29C5490B005F63DD /* Models */,
 				84EA934E29C54915005F63DD /* ViewModels */,
-				84063A9A29C3351A00535547 /* GameFestApp.swift */,
 				84EA935029C5492C005F63DD /* Views */,
+				84063A9A29C3351A00535547 /* GameFestApp.swift */,
 				84EA934F29C54925005F63DD /* Extensions */,
 				84063A9E29C3352100535547 /* Assets.xcassets */,
 				84063AA029C3352100535547 /* Preview Content */,
@@ -88,9 +105,49 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		8432E8FB29CF07B400B648A7 /* Benevoles */ = {
+			isa = PBXGroup;
+			children = (
+				84068B6A29CDBF0500F3E360 /* BenevoleDashboardViewModel.swift */,
+				84068B7029CDCD1300F3E360 /* AffectationViewModel.swift */,
+				84068B7429CDE2A800F3E360 /* ModifierAffectationViewModel.swift */,
+				84068B7629CDE3C600F3E360 /* AffectationListViewModel.swift */,
+			);
+			path = Benevoles;
+			sourceTree = "<group>";
+		};
+		8432E8FC29CF07C600B648A7 /* Benevoles */ = {
+			isa = PBXGroup;
+			children = (
+				84068B7229CDE04900F3E360 /* AffectationModel.swift */,
+				84068B7829CE05DF00F3E360 /* BenevoleModel.swift */,
+			);
+			path = Benevoles;
+			sourceTree = "<group>";
+		};
+		8432E8FD29CF07D200B648A7 /* Benevoles */ = {
+			isa = PBXGroup;
+			children = (
+				84C50A9F29C4781E00B0D2B6 /* BenevoleDashboardView.swift */,
+				84B6CF8929CCF84800503E09 /* AdminDashboardView.swift */,
+				84068B6C29CDC90E00F3E360 /* ModifierAffectationView.swift */,
+				84068B6E29CDC94B00F3E360 /* ModifierDisponibilitesView.swift */,
+			);
+			path = Benevoles;
+			sourceTree = "<group>";
+		};
+		8432E8FE29CF082800B648A7 /* APIRequests */ = {
+			isa = PBXGroup;
+			children = (
+				8432E8FF29CF092E00B648A7 /* AuthRequests.swift */,
+			);
+			path = APIRequests;
+			sourceTree = "<group>";
+		};
 		84EA934D29C5490B005F63DD /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				8432E8FC29CF07C600B648A7 /* Benevoles */,
 				84EA934B29C5465C005F63DD /* LoginResponse.swift */,
 				84EA935129C55365005F63DD /* SignUpResponse.swift */,
 			);
@@ -100,6 +157,7 @@
 		84EA934E29C54915005F63DD /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				8432E8FB29CF07B400B648A7 /* Benevoles */,
 				84EA934729C53DE7005F63DD /* LoginViewModel.swift */,
 				84EA935329C5546C005F63DD /* SignUpViewModel.swift */,
 			);
@@ -117,11 +175,9 @@
 		84EA935029C5492C005F63DD /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				84C50A9F29C4781E00B0D2B6 /* BenevoleDashboardView.swift */,
+				8432E8FD29CF07D200B648A7 /* Benevoles */,
 				84063A9C29C3351A00535547 /* LoginView.swift */,
 				84063AA829C33BD300535547 /* SignUpView.swift */,
-				84B6CF8729CCC17F00503E09 /* AssignmentListView.swift */,
-				84B6CF8929CCF84800503E09 /* AdminDashboardView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -199,14 +255,22 @@
 				84063A9D29C3351A00535547 /* LoginView.swift in Sources */,
 				84063AA929C33BD300535547 /* SignUpView.swift in Sources */,
 				84B6CF8A29CCF84800503E09 /* AdminDashboardView.swift in Sources */,
+				84068B7729CDE3C600F3E360 /* AffectationListViewModel.swift in Sources */,
 				84EA934829C53DE7005F63DD /* LoginViewModel.swift in Sources */,
 				84063A9B29C3351A00535547 /* GameFestApp.swift in Sources */,
+				8432E90029CF092E00B648A7 /* AuthRequests.swift in Sources */,
 				84EA935429C5546C005F63DD /* SignUpViewModel.swift in Sources */,
-				84B6CF8829CCC17F00503E09 /* AssignmentListView.swift in Sources */,
+				84068B7329CDE04900F3E360 /* AffectationModel.swift in Sources */,
+				84068B6D29CDC90E00F3E360 /* ModifierAffectationView.swift in Sources */,
+				84068B6F29CDC94B00F3E360 /* ModifierDisponibilitesView.swift in Sources */,
 				84EA935229C55365005F63DD /* SignUpResponse.swift in Sources */,
 				84C50AA029C4781E00B0D2B6 /* BenevoleDashboardView.swift in Sources */,
+				84068B7129CDCD1300F3E360 /* AffectationViewModel.swift in Sources */,
+				84068B7929CE05DF00F3E360 /* BenevoleModel.swift in Sources */,
 				84C50A9E29C44D9F00B0D2B6 /* Color+Extensions.swift in Sources */,
+				84068B6B29CDBF0600F3E360 /* BenevoleDashboardViewModel.swift in Sources */,
 				84EA934C29C5465C005F63DD /* LoginResponse.swift in Sources */,
+				84068B7529CDE2A800F3E360 /* ModifierAffectationViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

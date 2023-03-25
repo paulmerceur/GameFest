@@ -15,54 +15,42 @@ class LoginViewModel: ObservableObject {
     
     @Published var isLoggedIn: Bool = false
     @Published var isAdmin: Bool = false
+    
+    @Published var benevole: BenevoleModel
+    private var affectations = [
+        AffectationModel(zone: "Zone 1", date: "2023-03-20", creneau: "10:00 - 12:00", isDispo: true),
+        AffectationModel(zone: "Zone 2", date: "2023-03-21", creneau: "10:00 - 12:00", isDispo: false),
+        AffectationModel(zone: "Zone 3", date: "2023-03-19", creneau: "10:00 - 12:00", isDispo: true),
+        AffectationModel(zone: "Zone 2", date: "2023-03-20", creneau: "12:00 - 14:00", isDispo: true),
+        AffectationModel(zone: "Zone 1", date: "2023-03-21", creneau: "12:00 - 14:00", isDispo: false),
+        AffectationModel(zone: "Zone 4", date: "2023-03-19", creneau: "12:00 - 14:00", isDispo: true),
+        AffectationModel(zone: "Zone 4", date: "2023-03-22", creneau: "10:00 - 12:00", isDispo: true),
+        AffectationModel(zone: "Zone 3", date: "2023-03-20", creneau: "14:00 - 16:00", isDispo: true),
+        AffectationModel(zone: "Zone 1", date: "2023-03-20", creneau: "16:00 - 18:00", isDispo: true),
+    ]
 
     private var cancellables = Set<AnyCancellable>()
+    
+    init() {
+        self.benevole = BenevoleModel()
+    }
 
+    // Login function
     func login() {
-        guard let url = URL(string: "https://festivals-api.onrender.com/auth/login/") else {
-            print("Invalid URL")
-            return
-        }
-
-        let loginData = [
-            "email": email,
-            "password": password
-        ]
-
-        do {
-            let jsonData = try JSONSerialization.data(withJSONObject: loginData, options: [])
-            var request = URLRequest(url: url)
-            request.httpMethod = "POST"
-            request.httpBody = jsonData
-            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-            request.addValue("application/json", forHTTPHeaderField: "Accept")
-
-            URLSession.shared.dataTask(with: request) { data, response, error in
-                if let data = data {
-                    do {
-                        if let jsonString = String(data: data, encoding: .utf8) {
-                                    print("JSON reçu : \(jsonString)")
-                                }
-
-                        let decodedResponse = try JSONDecoder().decode(LoginResponse.self, from: data)
-
-                        if decodedResponse.error == nil {
-                            DispatchQueue.main.async {
-                                self.isAdmin = decodedResponse.session.user.role == "admin"
-                                self.isLoggedIn = true
-                            }
-                        } else {
-                            print("Erreur de connexion : \(decodedResponse.error!)")
-                        }
-                    } catch {
-                        print("Erreur de décodage : \(error)")
-                    }
-                } else {
-                    print("Erreur de requête : \(error?.localizedDescription ?? "Aucune donnée")")
+        AuthRequests.login(email: email, password: password) { result in
+            switch result {
+            case .success(let decodedResponse):
+                DispatchQueue.main.async {
+                    self.isAdmin = decodedResponse.session.user.role == "admin"
+                    self.isLoggedIn = true
+                    self.benevole.prenom = "Paco"
+                    self.benevole.nom = "Gangsta"
+                    self.benevole.email = "paco@gangsta.com"
+                    self.benevole.affectations = self.affectations
                 }
-            }.resume()
-        } catch {
-            print("Error encoding JSON")
+            case .failure(let error):
+                print("Erreur de connexion : \(error)")
+            }
         }
     }
 }
