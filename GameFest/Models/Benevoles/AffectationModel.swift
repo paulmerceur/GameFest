@@ -12,9 +12,8 @@ protocol AffectationObserver {
     func update(isDispo: Bool)
 }
 
-class AffectationModel {
-    public var date: String
-    public var creneau: String
+class AffectationModel: Equatable {
+    public var creneau: Creneau
     public var zone: String {
         didSet {
             for o in observers {
@@ -24,7 +23,6 @@ class AffectationModel {
     }
     public var isDispo: Bool {
         didSet {
-            self.zone = ""
             for o in observers {
                 o.update(isDispo: self.isDispo)
             }
@@ -37,8 +35,7 @@ class AffectationModel {
         self.observers.append(obs)
     }
     
-    init(zone: String, date: String, creneau: String, isDispo: Bool = false) {
-        self.date = date
+    init(zone: String, creneau: Creneau, isDispo: Bool = false) {
         self.creneau = creneau
         self.isDispo = isDispo
         if isDispo {
@@ -46,5 +43,12 @@ class AffectationModel {
         } else {
             self.zone = ""
         }
+    }
+    
+    // Equatable
+    static func == (lhs: AffectationModel, rhs: AffectationModel) -> Bool {
+        return lhs.creneau == rhs.creneau &&
+               lhs.zone == rhs.zone &&
+               lhs.isDispo == rhs.isDispo
     }
 }

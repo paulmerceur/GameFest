@@ -46,26 +46,28 @@ struct LoginView: View {
                 }
                 .padding()
                 
+                // Rediriger vers Créer un compte<
                 NavigationLink(destination: SignUpView()) {
                     Text("Créer un compte")
                         .foregroundColor(Color(red: 0, green: 0.35, blue: 0.6))
                 }
                 
+                // Display error message
+                Text(viewModel.errorMessage)
+                    .foregroundColor(.red)
+                    .padding()
+                
                 Spacer()
                 
-                if viewModel.isAdmin {
-                    NavigationLink("", destination: AdminDashboardView(), isActive: $viewModel.isLoggedIn)
-                        .hidden()
-                } else {
-                    NavigationLink("", destination: BenevoleDashboardView(benevole: viewModel.benevole), isActive: $viewModel.isLoggedIn)
-                        .hidden()
-                }
+                NavigationLink("", destination: ListeFestivalsView(benevole: viewModel.benevole), isActive: $viewModel.isLoggedIn)
+                    .hidden()
             }
         }
         .navigationBarTitle("")
         .navigationBarBackButtonHidden(true)
         .navigationBarHidden(true)
     }
+
     
 //    struct LoginView_Previews: PreviewProvider {
 //        static var previews: some View {

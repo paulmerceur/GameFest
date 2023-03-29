@@ -11,7 +11,7 @@ protocol AffectationVMObserver {
     func vmupdated()
 }
 
-class AffectationViewModel: AffectationObserver, Identifiable, ObservableObject {
+class AffectationViewModel: AffectationObserver, Identifiable, ObservableObject, Equatable {
     private var model: AffectationModel
     
     private var observers: [AffectationVMObserver] = []
@@ -20,8 +20,7 @@ class AffectationViewModel: AffectationObserver, Identifiable, ObservableObject 
     }
     
     let id = UUID()
-    let date: String
-    let creneau: String
+    public let creneau: Creneau
     
     // Published variables
     @Published var zone: String {
@@ -56,12 +55,16 @@ class AffectationViewModel: AffectationObserver, Identifiable, ObservableObject 
     init(model: AffectationModel) {
         self.model = model
         self.zone = model.zone
-        self.date = model.date
         self.creneau = model.creneau
         self.isDispo = model.isDispo
         model.register(self)
     }
     
+    
+    // Equatable
+    static func == (lhs: AffectationViewModel, rhs: AffectationViewModel) -> Bool {
+        return lhs.id == rhs.id
+    }
     
 }
 

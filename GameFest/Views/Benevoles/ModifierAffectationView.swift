@@ -23,9 +23,9 @@ struct ModifierAffectationView: View {
     var body: some View {
         VStack {
             VStack(alignment: .leading) {
-                Text(viewModel.affectationVM.date)
+                Text(viewModel.affectationVM.creneau.date)
                     .font(.headline)
-                Text(viewModel.affectationVM.creneau)
+                Text(viewModel.affectationVM.creneau.horaires)
                     .font(.subheadline)
             }
             .padding()

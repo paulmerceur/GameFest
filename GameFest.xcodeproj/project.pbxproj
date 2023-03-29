@@ -21,6 +21,12 @@
 		84068B7729CDE3C600F3E360 /* AffectationListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84068B7629CDE3C600F3E360 /* AffectationListViewModel.swift */; };
 		84068B7929CE05DF00F3E360 /* BenevoleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84068B7829CE05DF00F3E360 /* BenevoleModel.swift */; };
 		8432E90029CF092E00B648A7 /* AuthRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8432E8FF29CF092E00B648A7 /* AuthRequests.swift */; };
+		8432E90229CF5B4100B648A7 /* Creneau.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8432E90129CF5B4100B648A7 /* Creneau.swift */; };
+		8432E90429CF5CE600B648A7 /* FestivalModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8432E90329CF5CE600B648A7 /* FestivalModel.swift */; };
+		8432E90729D06ADB00B648A7 /* ListeFestivalsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8432E90629D06ADB00B648A7 /* ListeFestivalsView.swift */; };
+		8432E90929D06B5500B648A7 /* ListeFestivalsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8432E90829D06B5500B648A7 /* ListeFestivalsViewModel.swift */; };
+		8432E90B29D080FB00B648A7 /* ModifierDisponibilitesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8432E90A29D080FB00B648A7 /* ModifierDisponibilitesViewModel.swift */; };
+		8432E90D29D081D700B648A7 /* BenevoleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8432E90C29D081D700B648A7 /* BenevoleViewModel.swift */; };
 		84B6CF8A29CCF84800503E09 /* AdminDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B6CF8929CCF84800503E09 /* AdminDashboardView.swift */; };
 		84C50A9E29C44D9F00B0D2B6 /* Color+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C50A9D29C44D9F00B0D2B6 /* Color+Extensions.swift */; };
 		84C50AA029C4781E00B0D2B6 /* BenevoleDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C50A9F29C4781E00B0D2B6 /* BenevoleDashboardView.swift */; };
@@ -46,6 +52,12 @@
 		84068B7629CDE3C600F3E360 /* AffectationListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AffectationListViewModel.swift; sourceTree = "<group>"; };
 		84068B7829CE05DF00F3E360 /* BenevoleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BenevoleModel.swift; sourceTree = "<group>"; };
 		8432E8FF29CF092E00B648A7 /* AuthRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRequests.swift; sourceTree = "<group>"; };
+		8432E90129CF5B4100B648A7 /* Creneau.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Creneau.swift; sourceTree = "<group>"; };
+		8432E90329CF5CE600B648A7 /* FestivalModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FestivalModel.swift; sourceTree = "<group>"; };
+		8432E90629D06ADB00B648A7 /* ListeFestivalsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListeFestivalsView.swift; sourceTree = "<group>"; };
+		8432E90829D06B5500B648A7 /* ListeFestivalsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListeFestivalsViewModel.swift; sourceTree = "<group>"; };
+		8432E90A29D080FB00B648A7 /* ModifierDisponibilitesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifierDisponibilitesViewModel.swift; sourceTree = "<group>"; };
+		8432E90C29D081D700B648A7 /* BenevoleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BenevoleViewModel.swift; sourceTree = "<group>"; };
 		84B6CF8929CCF84800503E09 /* AdminDashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminDashboardView.swift; sourceTree = "<group>"; };
 		84C50A9D29C44D9F00B0D2B6 /* Color+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extensions.swift"; sourceTree = "<group>"; };
 		84C50A9F29C4781E00B0D2B6 /* BenevoleDashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BenevoleDashboardView.swift; sourceTree = "<group>"; };
@@ -112,6 +124,8 @@
 				84068B7029CDCD1300F3E360 /* AffectationViewModel.swift */,
 				84068B7429CDE2A800F3E360 /* ModifierAffectationViewModel.swift */,
 				84068B7629CDE3C600F3E360 /* AffectationListViewModel.swift */,
+				8432E90A29D080FB00B648A7 /* ModifierDisponibilitesViewModel.swift */,
+				8432E90C29D081D700B648A7 /* BenevoleViewModel.swift */,
 			);
 			path = Benevoles;
 			sourceTree = "<group>";
@@ -150,6 +164,8 @@
 				8432E8FC29CF07C600B648A7 /* Benevoles */,
 				84EA934B29C5465C005F63DD /* LoginResponse.swift */,
 				84EA935129C55365005F63DD /* SignUpResponse.swift */,
+				8432E90129CF5B4100B648A7 /* Creneau.swift */,
+				8432E90329CF5CE600B648A7 /* FestivalModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -160,6 +176,7 @@
 				8432E8FB29CF07B400B648A7 /* Benevoles */,
 				84EA934729C53DE7005F63DD /* LoginViewModel.swift */,
 				84EA935329C5546C005F63DD /* SignUpViewModel.swift */,
+				8432E90829D06B5500B648A7 /* ListeFestivalsViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -178,6 +195,7 @@
 				8432E8FD29CF07D200B648A7 /* Benevoles */,
 				84063A9C29C3351A00535547 /* LoginView.swift */,
 				84063AA829C33BD300535547 /* SignUpView.swift */,
+				8432E90629D06ADB00B648A7 /* ListeFestivalsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -254,14 +272,19 @@
 			files = (
 				84063A9D29C3351A00535547 /* LoginView.swift in Sources */,
 				84063AA929C33BD300535547 /* SignUpView.swift in Sources */,
+				8432E90429CF5CE600B648A7 /* FestivalModel.swift in Sources */,
 				84B6CF8A29CCF84800503E09 /* AdminDashboardView.swift in Sources */,
 				84068B7729CDE3C600F3E360 /* AffectationListViewModel.swift in Sources */,
+				8432E90929D06B5500B648A7 /* ListeFestivalsViewModel.swift in Sources */,
 				84EA934829C53DE7005F63DD /* LoginViewModel.swift in Sources */,
+				8432E90229CF5B4100B648A7 /* Creneau.swift in Sources */,
 				84063A9B29C3351A00535547 /* GameFestApp.swift in Sources */,
 				8432E90029CF092E00B648A7 /* AuthRequests.swift in Sources */,
 				84EA935429C5546C005F63DD /* SignUpViewModel.swift in Sources */,
 				84068B7329CDE04900F3E360 /* AffectationModel.swift in Sources */,
 				84068B6D29CDC90E00F3E360 /* ModifierAffectationView.swift in Sources */,
+				8432E90B29D080FB00B648A7 /* ModifierDisponibilitesViewModel.swift in Sources */,
+				8432E90729D06ADB00B648A7 /* ListeFestivalsView.swift in Sources */,
 				84068B6F29CDC94B00F3E360 /* ModifierDisponibilitesView.swift in Sources */,
 				84EA935229C55365005F63DD /* SignUpResponse.swift in Sources */,
 				84C50AA029C4781E00B0D2B6 /* BenevoleDashboardView.swift in Sources */,
@@ -270,6 +293,7 @@
 				84C50A9E29C44D9F00B0D2B6 /* Color+Extensions.swift in Sources */,
 				84068B6B29CDBF0600F3E360 /* BenevoleDashboardViewModel.swift in Sources */,
 				84EA934C29C5465C005F63DD /* LoginResponse.swift in Sources */,
+				8432E90D29D081D700B648A7 /* BenevoleViewModel.swift in Sources */,
 				84068B7529CDE2A800F3E360 /* ModifierAffectationViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

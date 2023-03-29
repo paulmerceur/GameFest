@@ -8,14 +8,22 @@
 import Foundation
 
 protocol BenevoleObserver {
-    func update(affectations: [AffectationModel])
+    func update(affectations: [AffectationViewModel])
 }
 
-class BenevoleModel {
+class BenevoleModel: Equatable {
+    
     public var prenom: String
     public var nom: String
     public var email: String
-    public var affectations: [AffectationModel]
+    public var isAdmin: Bool
+    public var affectations: [AffectationViewModel] {
+        didSet {
+            for o in observers {
+                o.update(affectations: self.affectations)
+            }
+        }
+    }
     
     private var observers : [BenevoleObserver] = []
     public func register(_ obs: BenevoleObserver) {
@@ -23,10 +31,11 @@ class BenevoleModel {
     }
     
     
-    init(prenom: String, nom: String, email: String, affectations: [AffectationModel]) {
+    init(prenom: String, nom: String, email: String, isAdmin: Bool, affectations: [AffectationViewModel]) {
         self.prenom = prenom
         self.nom = nom
         self.email = email
+        self.isAdmin = isAdmin
         self.affectations = affectations
     }
     
@@ -34,6 +43,16 @@ class BenevoleModel {
         self.prenom = ""
         self.nom = ""
         self.email = ""
+        self.isAdmin = false
         self.affectations = []
+    }
+    
+    // Equatable
+    static func == (lhs: BenevoleModel, rhs: BenevoleModel) -> Bool {
+        return lhs.prenom == rhs.prenom &&
+               lhs.nom == rhs.nom &&
+               lhs.email == rhs.email &&
+               lhs.isAdmin == rhs.isAdmin &&
+               lhs.affectations == rhs.affectations
     }
 }

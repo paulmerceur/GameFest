@@ -11,16 +11,20 @@ import Foundation
 class AffectationListViewModel : ObservableObject, AffectationVMObserver {
     @Published var affectations : [AffectationViewModel] = []
     
-    init(affectations: [AffectationModel]) {
+    init(affectations: [AffectationViewModel]) {
         for affectation in affectations {
-            let affectationVM = AffectationViewModel(model: affectation)
-            self.affectations.append(affectationVM)
-            affectationVM.register(self)
+            self.affectations.append(affectation)
+            affectation.register(self)
         }
     }
     
     func update(zone: String, at index: Int) {
         self.affectations[index].zone = zone
+        self.objectWillChange.send()
+    }
+    
+    func update(isDispo: Bool, at index: Int) {
+        self.affectations[index].isDispo = isDispo
         self.objectWillChange.send()
     }
     

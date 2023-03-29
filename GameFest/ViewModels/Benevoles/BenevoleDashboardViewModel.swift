@@ -15,7 +15,7 @@ class BenevoleDashboardViewModel: ObservableObject, BenevoleObserver {
     @Published var benevole: BenevoleModel
     
     // Update Functions
-    func update(affectations: [AffectationModel]) {
+    func update(affectations: [AffectationViewModel]) {
         self.benevole.affectations = affectations
         self.objectWillChange.send()
     }
