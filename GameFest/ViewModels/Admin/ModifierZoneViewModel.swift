@@ -19,23 +19,36 @@ class ModifierZoneViewModel: ObservableObject, ZoneVMObserver {
     }
     
     private func getAffectations() {
-        ZoneRequests.getAffectations(zoneId: zone.id) { (affectations, error) in
+        ZoneRequests.getAffectations(zoneId: self.zone.id) { (affectations, error) in
             if let error = error {
                 print("Erreur: \(error.localizedDescription)")
             } else {
-                self.affectations = affectations ?? []
+                if !affectations!.isEmpty {
+                    return
+                }
             }
         }
     }
     
     public func updateNbBenevolesMin() {
         self.zone.nbBenevolesMin = self.nbBenevolesMin
+        self.updateAPI()
     }
     
     func update(nbBenevolesMin: Int) {
         if self.zone.nbBenevolesMin != nbBenevolesMin {
             self.zone.nbBenevolesMin = nbBenevolesMin
             self.objectWillChange.send()
+        }
+    }
+    
+    func updateAPI() {
+        ZoneRequests.updateZone(zone: self.zone.model) { (error) in
+            if let error = error {
+                print("Erreur: \(error.localizedDescription)")
+            } else {
+                print("Zone updated")
+            }
         }
     }
     

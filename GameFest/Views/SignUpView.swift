@@ -11,6 +11,7 @@ import SwiftUI
 import SwiftUI
 
 struct SignUpView: View {
+    @Environment(\.presentationMode) var presentationMode
     @Environment(\.colorScheme) var colorScheme
     
     @StateObject private var viewModel = SignUpViewModel()
@@ -56,6 +57,7 @@ struct SignUpView: View {
                 .padding(.horizontal)
             
             Button(action: {
+                presentationMode.wrappedValue.dismiss()
                 viewModel.signUp()
             }) {
                 Text("S'inscrire")

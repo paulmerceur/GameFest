@@ -18,9 +18,9 @@ class CreateZoneViewModel: ObservableObject {
     }
 
     func createZone() {
-        let zone = Zone(nom: nom, nbBenevolesMin: nbBenevolesMin)
+        let zone = Zone(festival: festival.id, nom: nom, nbBenevolesMin: nbBenevolesMin)
 
-        ZoneRequests.createZone(zone: zone, festivalId: festival.id) { (zone, error) in
+        ZoneRequests.createZone(zone: zone) { (zone, error) in
             if let error = error {
                 print("Erreur lors de la création de la zone: \(error.localizedDescription)")
             } else {

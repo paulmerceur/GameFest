@@ -14,6 +14,7 @@ protocol ZoneObserver {
 
 class Zone: Identifiable, Equatable, Decodable, Encodable, Hashable {
     public var id: Int
+    public var festival: Int
     public var nom: String {
         didSet {
             for o in observers {
@@ -37,6 +38,7 @@ class Zone: Identifiable, Equatable, Decodable, Encodable, Hashable {
     
     enum CodingKeys: String, CodingKey {
         case id
+        case festival
         case nom
         case nbBenevolesMin
     }
@@ -44,12 +46,14 @@ class Zone: Identifiable, Equatable, Decodable, Encodable, Hashable {
     required init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         id = try values.decode(Int.self, forKey: .id)
+        festival = try values.decode(Int.self, forKey: .festival)
         nom = try values.decode(String.self, forKey: .nom)
         nbBenevolesMin = try values.decode(Int.self, forKey: .nbBenevolesMin)
     }
     
-    init(id: Int = -1, nom: String, nbBenevolesMin: Int) {
+    init(id: Int = -1, festival: Int, nom: String, nbBenevolesMin: Int) {
         self.id = id
+        self.festival = festival
         self.nom = nom
         self.nbBenevolesMin = nbBenevolesMin
     }

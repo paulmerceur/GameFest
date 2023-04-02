@@ -16,12 +16,15 @@ class ZoneRequests {
             completion(nil, NSError(domain: "Invalid URL", code: 0, userInfo: nil))
             return
         }
+        print("1")
         
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        print("2")
         
         URLSession.shared.dataTask(with: request) { data, response, error in
+            print("3")
             if let error = error {
                 completion(nil, error)
                 return
@@ -30,10 +33,12 @@ class ZoneRequests {
                 completion(nil, NSError(domain: "No data returned", code: 0, userInfo: nil))
                 return
             }
+            print("Request data: \(String(data: data, encoding: .utf8) ?? "")")
             do {
                 let jsonDecoder = JSONDecoder()
                 jsonDecoder.dateDecodingStrategy = .iso8601
                 let affectations = try jsonDecoder.decode([AffectationJSON].self, from: data)
+                print("Affectations: \(affectations)")
                 let affectationsModels = affectations.map {
                     AffectationModel(
                         id: $0.id,
@@ -46,9 +51,11 @@ class ZoneRequests {
                         ),
                         zone: $0.zone != nil ? Zone(
                             id: $0.zone!.id,
+                            festival: $0.zone!.festival,
                             nom: $0.zone!.nom,
                             nbBenevolesMin: $0.zone!.nbBenevolesMin
                         ) : Zone(
+                            festival: -1,
                             nom: "",
                             nbBenevolesMin: 0
                         ),
@@ -61,6 +68,10 @@ class ZoneRequests {
                     )
                 }
                 completion(affectationsModels, nil)
+                print("Good")
+                if !affectationsModels.isEmpty {
+                    return
+                }
             } catch {
                 completion(nil, error)
             }
@@ -68,7 +79,7 @@ class ZoneRequests {
     }
     
     // Create a zone
-    static func createZone(zone: Zone, festivalId: Int, completion: @escaping (Zone?, Error?) -> Void) {
+    static func createZone(zone: Zone, completion: @escaping (Zone?, Error?) -> Void) {
         let urlString = "https://festivals-api.onrender.com/zones"
         guard let url = URL(string: urlString) else {
             completion(nil, NSError(domain: "Invalid URL", code: 0, userInfo: nil))
@@ -81,7 +92,7 @@ class ZoneRequests {
         
         var bodyDict: [String: Any] = [:]
         bodyDict["nom"] = zone.nom
-        bodyDict["festival"] = festivalId
+        bodyDict["festival"] = zone.festival
         bodyDict["nb_benevoles_min"] = zone.nbBenevolesMin
     
 
@@ -105,11 +116,53 @@ class ZoneRequests {
             do {
                 let jsonDecoder = JSONDecoder()
                 let zoneJSON = try jsonDecoder.decode(ZoneJSON.self, from: data)
-                let zone = Zone(id: zoneJSON.id, nom: zoneJSON.nom, nbBenevolesMin: zoneJSON.nbBenevolesMin)
+                let zone = Zone(id: zoneJSON.id, festival: zoneJSON.festival, nom: zoneJSON.nom, nbBenevolesMin: zoneJSON.nbBenevolesMin)
                 
                 completion(zone, nil)
             } catch {
                 completion(nil, error)
+            }
+        }.resume()
+    }
+    
+    // Update zone
+    static func updateZone(zone: Zone, completion: @escaping (Error?) -> Void) {
+        let urlString = "https://festivals-api.onrender.com/zones/\(zone.id)"
+        guard let url = URL(string: urlString) else {
+            completion(NSError(domain: "No data returned", code: 0, userInfo: nil))
+            return
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "PUT"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let bodyDict: [String: Any] = [
+            "nom": zone.nom,
+            "festival": zone.festival,
+            "nb_benevoles_min": zone.nbBenevolesMin
+        ]
+        
+        do {
+            let data = try JSONSerialization.data(withJSONObject: bodyDict, options: [])
+            request.httpBody = data
+        } catch {
+            completion(error)
+            return
+        }
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                completion(error)
+                return
+            }
+            guard let response = response as? HTTPURLResponse else {
+                completion(NSError(domain: "Invalid Response", code: 0, userInfo: nil))
+                return
+            }
+            if response.statusCode == 200 {
+                print("Update successful")
+            } else {
+                print("Update failed with status code: \(response.statusCode)")
             }
         }.resume()
     }

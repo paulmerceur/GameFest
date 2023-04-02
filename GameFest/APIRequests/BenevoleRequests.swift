@@ -45,9 +45,11 @@ class BenevoleRequests {
                         ),
                         zone: $0.zone != nil ? Zone(
                             id: $0.zone!.id,
+                            festival: $0.zone!.festival,
                             nom: $0.zone!.nom,
                             nbBenevolesMin: $0.zone!.nbBenevolesMin
                         ) : Zone(
+                            festival: -1,
                             nom: "",
                             nbBenevolesMin: 0
                         ),
@@ -98,7 +100,7 @@ class BenevoleRequests {
                 jsonDecoder.dateDecodingStrategy = .iso8601
                 let festivals = try jsonDecoder.decode([FestivalJSON].self, from: data)
                 
-                let festivalsModels = festivals.map { FestivalModel(id: $0.id, nom: $0.nom, dateDebut: $0.dateDebut, dateFin: $0.dateFin, heureDebut: $0.heureDebut, heureFin: $0.heureFin, creneaux: [], zones: $0.zones.map { Zone(id: $0.id, nom: $0.nom, nbBenevolesMin: $0.nbBenevolesMin) }) }
+                let festivalsModels = festivals.map { FestivalModel(id: $0.id, nom: $0.nom, dateDebut: $0.dateDebut, dateFin: $0.dateFin, heureDebut: $0.heureDebut, heureFin: $0.heureFin, creneaux: [], zones: $0.zones.map { Zone(id: $0.id, festival: $0.festival, nom: $0.nom, nbBenevolesMin: $0.nbBenevolesMin) }) }
                 completion(festivalsModels, nil)
             } catch {
                 completion(nil, error)

@@ -103,18 +103,22 @@ struct AdminDashboardView_Previews: PreviewProvider {
                 zones: [
                     Zone(
                         id: 1,
+                        festival: -1,
                         nom: "Zone1",
                         nbBenevolesMin: 3),
                     Zone(
                         id: 2,
+                        festival: -1,
                         nom: "Zone2",
                         nbBenevolesMin: 3),
                     Zone(
                         id: 3,
+                        festival: -1,
                         nom: "Zone3",
                         nbBenevolesMin: 3),
                     Zone(
                         id: 4,
+                        festival: -1,
                         nom: "Zone4",
                         nbBenevolesMin: 3)
                 ]

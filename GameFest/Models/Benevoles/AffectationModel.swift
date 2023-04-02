@@ -45,7 +45,7 @@ class AffectationModel: Equatable, Hashable, Identifiable {
         if isDispo {
             self.zone = zone
         } else {
-            self.zone = Zone(nom: "", nbBenevolesMin: 0)
+            self.zone = Zone(festival: -1, nom: "", nbBenevolesMin: 0)
         }
     }
     

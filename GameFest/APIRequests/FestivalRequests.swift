@@ -34,7 +34,7 @@ class FestivalRequests {
                 let jsonDecoder = JSONDecoder()
                 jsonDecoder.dateDecodingStrategy = .iso8601
                 let zones = try jsonDecoder.decode([ZoneJSON].self, from: data)
-                let zonesModels = zones.map { Zone(id: $0.id, nom: $0.nom, nbBenevolesMin: $0.nbBenevolesMin) }
+                let zonesModels = zones.map { Zone(id: $0.id, festival: $0.festival, nom: $0.nom, nbBenevolesMin: $0.nbBenevolesMin) }
                 completion(zonesModels, nil)
             } catch {
                 completion(nil, error)
@@ -49,7 +49,6 @@ class FestivalRequests {
             completion(nil, NSError(domain: "Invalid URL", code: 0, userInfo: nil))
             return
         }
-        print("Creating festival...")
 
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
@@ -68,7 +67,6 @@ class FestivalRequests {
         bodyDict["heure_debut"] = timeFormatter.date(from: festival.heureDebut)?.timeString
         bodyDict["heure_fin"] = timeFormatter.date(from: festival.heureFin)?.timeString
         
-        print("Body Dict: \(bodyDict)")
         
         do {
             let jsonData = try JSONSerialization.data(withJSONObject: bodyDict, options: [])
@@ -87,14 +85,11 @@ class FestivalRequests {
                 completion(nil, NSError(domain: "No data returned", code: 0, userInfo: nil))
                 return
             }
-            print("Response data: \(String(data: data, encoding: .utf8) ?? "")")
             do {
                 let jsonDecoder = JSONDecoder()
                 jsonDecoder.dateDecodingStrategy = .iso8601
                 let festivalJSON = try jsonDecoder.decode(FestivalJSON.self, from: data)
-                print("FestivalJSON: \(festivalJSON)")
                 let festival = FestivalModel(nom: festivalJSON.nom, dateDebut: festivalJSON.dateDebut, dateFin: festivalJSON.dateFin, heureDebut: festivalJSON.heureDebut, heureFin: festivalJSON.heureFin)
-                print("FestivalModelCreneaux: \(festival.creneaux)")
                 completion(festival, nil)
             } catch {
                 completion(nil, error)
@@ -188,7 +183,6 @@ class FestivalRequests {
             completion(NSError(domain: "Invalid URL", code: 0, userInfo: nil))
             return
         }
-        print("url: \(urlString)")
 
         var request = URLRequest(url: url)
         request.httpMethod = "POST"

@@ -12,7 +12,7 @@ protocol ZoneVMObserver {
 }
 
 class ZoneViewModel: ZoneObserver, Identifiable, ObservableObject, Equatable {
-    private var model: Zone
+    public var model: Zone
     
     private var observers: [ZoneVMObserver] = []
     public func register(_ obs: ZoneVMObserver) {
@@ -20,6 +20,7 @@ class ZoneViewModel: ZoneObserver, Identifiable, ObservableObject, Equatable {
     }
     
     public let id: Int
+    public let festival: Int
     
     // Published variables
     @Published var nom: String {
@@ -50,6 +51,7 @@ class ZoneViewModel: ZoneObserver, Identifiable, ObservableObject, Equatable {
     init(model: Zone) {
         self.model = model
         self.id = model.id
+        self.festival = model.festival
         self.nom = model.nom
         self.nbBenevolesMin = model.nbBenevolesMin
         model.register(self)

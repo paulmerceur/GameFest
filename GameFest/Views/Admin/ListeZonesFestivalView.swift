@@ -25,7 +25,7 @@ struct ListeZonesFestivalView: View {
                 .font(.title)
                 .fontWeight(.bold)
             
-            List(viewModel.zones) { zone in
+            List(viewModel.zones.sorted(by: { $0.id < $1.id })) { zone in
                 NavigationLink(destination: ModifierZoneView(zone: zone)) {
                     VStack(alignment: .leading) {
                         Text(zone.nom)
