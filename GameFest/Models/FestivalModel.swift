@@ -94,29 +94,56 @@ class FestivalModel: Identifiable, ObservableObject, Encodable, Decodable {
     }
     
     static func generateCreneaux(dateDebut: String, dateFin: String, heureDebut: String, heureFin: String) -> [Creneau] {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "dd/MM/yyyy HH:mm"
+    let formatter = DateFormatter()
+    formatter.dateFormat = "dd/MM/yyyy HH:mm"
+    
+    guard let start = formatter.date(from: "\(dateDebut) \(heureDebut)"),
+          let end = formatter.date(from: "\(dateFin) \(heureFin)"),
+          start <= end else {
+        return []
+    }
+    
+    var currentDate = start
+    var creneaux: [Creneau] = []
+    
+    // Iterate through each day
+    while currentDate <= end {
+        let midnight = Calendar.current.startOfDay(for: currentDate)
+        let lastCreneau = formatter.date(from: "\(formatter.string(from: midnight)) \(heureFin)")
         
-        guard let start = formatter.date(from: "\(dateDebut) \(heureDebut)"),
-              let end = formatter.date(from: "\(dateFin) \(heureFin)"),
-              start <= end else {
-            return []
-        }
+        // Check if we are at the last day
+        let isLastDay = lastCreneau != nil && end.timeIntervalSince(midnight) < lastCreneau!.timeIntervalSince(currentDate)
         
-        var currentDate = start
-        var creneaux: [Creneau] = []
-        while currentDate <= end {
+        // Iterate through each 2-hour block for the current day
+        while true {
             let heureDebutCreneau = formatter.string(from: currentDate)
-            let heureFinCreneau = formatter.string(from: currentDate.addingTimeInterval(2 * 60 * 60))
-            if formatter.date(from: heureFinCreneau) == nil {
+            
+            let nextCreneau = currentDate.addingTimeInterval(2 * 60 * 60)
+            
+            // Check if we have reached the end of the current day
+            if isLastDay && nextCreneau > lastCreneau! {
+                let duration = lastCreneau!.timeIntervalSince(currentDate)
+                let heureFinCreneau = formatter.string(from: currentDate.addingTimeInterval(duration))
+                creneaux.append(Creneau(date: formatter.string(from: currentDate), heureDebut: heureDebutCreneau, heureFin: heureFinCreneau))
                 break
             }
+            
+            let heureFinCreneau = formatter.string(from: nextCreneau)
             creneaux.append(Creneau(date: formatter.string(from: currentDate), heureDebut: heureDebutCreneau, heureFin: heureFinCreneau))
-            currentDate = currentDate.addingTimeInterval(2 * 60 * 60)
+            
+            if nextCreneau >= lastCreneau ?? end {
+                break
+            }
+            
+            currentDate = nextCreneau
         }
         
-        return creneaux
+        currentDate = Calendar.current.date(byAdding: .day, value: 1, to: Calendar.current.startOfDay(for: currentDate))!
     }
+    
+    return creneaux
+}
+
 
 
 }
