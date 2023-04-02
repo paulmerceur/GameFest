@@ -106,4 +106,36 @@ class BenevoleRequests {
         }.resume()
     }
     
+    // Get all bénévoles
+    static func getAllBenevoles(completion: @escaping ([BenevoleModel]?, Error?) -> Void) {
+        let urlString = "https://festivals-api.onrender.com/benevoles"
+        guard let url = URL(string: urlString) else {
+            completion(nil, NSError(domain: "Invalid URL", code: 0, userInfo: nil))
+            return
+        }
+
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                completion(nil, error)
+                return
+            }
+            guard let data = data else {
+                completion(nil, NSError(domain: "No data returned", code: 0, userInfo: nil))
+                return
+            }
+                do {
+                    let jsonDecoder = JSONDecoder()
+                    jsonDecoder.dateDecodingStrategy = .iso8601
+                    let benevoles = try jsonDecoder.decode([BenevoleJSON].self, from: data)
+                    let benevolesModels = benevoles.map { BenevoleModel(id: $0.id, prenom: $0.prenom, nom: $0.nom, email: $0.email, isAdmin: $0.isAdmin) }
+                    completion(benevolesModels, nil)
+                } catch {
+                    completion(nil, error)
+                }
+        }.resume()
+    }
 }

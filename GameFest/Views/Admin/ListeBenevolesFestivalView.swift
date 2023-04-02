@@ -21,12 +21,21 @@ struct ListeBenevolesFestivalView: View {
     var body: some View {
         VStack {
             Spacer().frame(height: 20)
-            Text("\(viewModel.festival.nom)")
+            Text("\(self.viewModel.festival.nom)")
                 .font(.title)
                 .fontWeight(.bold)
-            List(viewModel.benevoles) { benevole in
+            List(self.viewModel.benevoles) { benevole in
                 HStack {
                     Text("\(benevole.prenom) \(benevole.nom)")
+                    Spacer()
+                    if (self.viewModel.benevolesParticipant.contains(benevole)) {
+                        Image(systemName: "checkmark")
+                            .foregroundColor(.blue)
+                    }
+                }
+                .contentShape(Rectangle())
+                .onTapGesture {
+                    self.viewModel.addBenevole(benevole)
                 }
             }
         }

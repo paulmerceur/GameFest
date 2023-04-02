@@ -180,6 +180,27 @@ class FestivalRequests {
                 }
         }.resume()
     }
+    
+    // Add benevole from festival
+    static func addBenevoleToFestival(benevoleId: String, festivalId: Int, completion: @escaping (Error?) -> Void) {
+        let urlString = "https://festivals-api.onrender.com/festivals/\(festivalId)/benevoles/\(benevoleId)"
+        guard let url = URL(string: urlString) else {
+            completion(NSError(domain: "Invalid URL", code: 0, userInfo: nil))
+            return
+        }
+
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                completion(error)
+                return
+            }
+            completion(nil)
+        }.resume()
+    }
 
 }
 

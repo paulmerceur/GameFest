@@ -10,7 +10,7 @@ import Foundation
 protocol BenevoleObserver {
 }
 
-class BenevoleModel: Equatable, Hashable, Encodable {
+class BenevoleModel: Equatable, Hashable, Encodable, Identifiable {
     
     public var id: String
     public var prenom: String
