@@ -69,41 +69,49 @@ class ZoneRequests {
     
     // Create a zone
     static func createZone(zone: Zone, festivalId: Int, completion: @escaping (Zone?, Error?) -> Void) {
-            let urlString = "https://festivals-api.onrender.com/festivals/\(festivalId)/zones"
-            guard let url = URL(string: urlString) else {
-                completion(nil, NSError(domain: "Invalid URL", code: 0, userInfo: nil))
-                return
-            }
+        let urlString = "https://festivals-api.onrender.com/zones"
+        guard let url = URL(string: urlString) else {
+            completion(nil, NSError(domain: "Invalid URL", code: 0, userInfo: nil))
+            return
+        }
 
-            var request = URLRequest(url: url)
-            request.httpMethod = "POST"
-            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-            
-            do {
-                let jsonData = try JSONEncoder().encode(zone)
-                request.httpBody = jsonData
-            } catch {
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        var bodyDict: [String: Any] = [:]
+        bodyDict["nom"] = zone.nom
+        bodyDict["festival"] = festivalId
+        bodyDict["nb_benevoles_min"] = zone.nbBenevolesMin
+    
+
+        do {
+            let jsonData = try JSONSerialization.data(withJSONObject: bodyDict, options: [])
+            request.httpBody = jsonData
+        } catch {
+            completion(nil, error)
+            return
+        }
+
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
                 completion(nil, error)
                 return
             }
-
-            URLSession.shared.dataTask(with: request) { data, response, error in
-                if let error = error {
-                    completion(nil, error)
-                    return
-                }
-                guard let data = data else {
-                    completion(nil, NSError(domain: "No data returned", code: 0, userInfo: nil))
-                    return
-                }
-                do {
-                    let jsonDecoder = JSONDecoder()
-                    let zone = try jsonDecoder.decode(Zone.self, from: data)
-                    completion(zone, nil)
-                } catch {
-                    completion(nil, error)
-                }
-            }.resume()
-        }
+            guard let data = data else {
+                completion(nil, NSError(domain: "No data returned", code: 0, userInfo: nil))
+                return
+            }
+            do {
+                let jsonDecoder = JSONDecoder()
+                let zoneJSON = try jsonDecoder.decode(ZoneJSON.self, from: data)
+                let zone = Zone(id: zoneJSON.id, nom: zoneJSON.nom, nbBenevolesMin: zoneJSON.nbBenevolesMin)
+                
+                completion(zone, nil)
+            } catch {
+                completion(nil, error)
+            }
+        }.resume()
+    }
     
 }

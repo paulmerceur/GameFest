@@ -221,9 +221,9 @@
 			children = (
 				84D1ADB029D7945D00FAA040 /* CreateFestivalViewModel.swift */,
 				84BF105729D856BD0096F0F2 /* AdminDashboardViewModel.swift */,
-				84BF105D29D85C160096F0F2 /* ListeBenevolesFestivalViewModel.swift */,
 				84BF106329D8691C0096F0F2 /* ListeZonesFestivalViewModel.swift */,
 				84BF106929D874270096F0F2 /* ModifierZoneViewModel.swift */,
+				84BF105D29D85C160096F0F2 /* ListeBenevolesFestivalViewModel.swift */,
 				84BF106F29D87F2B0096F0F2 /* CreateZoneViewModel.swift */,
 			);
 			path = Admin;

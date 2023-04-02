@@ -22,7 +22,7 @@ class CreateZoneViewModel: ObservableObject {
 
         ZoneRequests.createZone(zone: zone, festivalId: festival.id) { (zone, error) in
             if let error = error {
-                print("Erreur lors de la création de festival: \(error.localizedDescription)")
+                print("Erreur lors de la création de la zone: \(error.localizedDescription)")
             } else {
                 self.festival.zones.append(zone!)
             }

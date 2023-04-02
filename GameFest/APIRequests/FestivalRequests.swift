@@ -188,6 +188,7 @@ class FestivalRequests {
             completion(NSError(domain: "Invalid URL", code: 0, userInfo: nil))
             return
         }
+        print("url: \(urlString)")
 
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
