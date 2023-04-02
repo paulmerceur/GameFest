@@ -17,8 +17,11 @@ class AffectationListViewModel : ObservableObject, AffectationVMObserver {
             affectation.register(self)
         }
     }
+    init() {
+        self.affectations = []
+    }
     
-    func update(zone: String, at index: Int) {
+    func update(zone: Zone, at index: Int) {
         self.affectations[index].zone = zone
         self.objectWillChange.send()
     }

@@ -8,38 +8,34 @@
 import Foundation
 import SwiftUI
 
-class BenevoleDashboardViewModel: ObservableObject, BenevoleObserver {
+class BenevoleDashboardViewModel: ObservableObject {
     @Published var isLoggedOut: Bool = false
     
-    @ObservedObject var affectationsVM: AffectationListViewModel
+    @ObservedObject var affectationsVM = AffectationListViewModel()
     @Published var benevole: BenevoleModel
+    var festival: FestivalModel
     
-    // Update Functions
-    func update(affectations: [AffectationViewModel]) {
-        self.benevole.affectations = affectations
-        self.objectWillChange.send()
+    init(benevole: BenevoleModel, festival: FestivalModel) {
+        self.benevole = benevole
+        self.festival = festival
+        self.getAffectations()
     }
     
-    init(benevole: BenevoleModel) {
-        self.affectationsVM = AffectationListViewModel(affectations: benevole.affectations)
-        self.benevole = benevole
+    func getAffectations() {
+        BenevoleRequests.getAffectations(benevoleId: self.benevole.id, festivalId: self.festival.id) { (affectations, error) in
+            if let error = error {
+                print("Erreur: \(error.localizedDescription)")
+            } else {
+                let affectations = affectations ?? []
+                self.affectationsVM = AffectationListViewModel(affectations: affectations)
+            }
+        }
     }
     
     func logout() {
-        guard let url = URL(string: "https://festivals-api.onrender.com/auth/logout/") else {
-            print("Invalid URL")
-            return
-        }
-        
-        do {
-            var request = URLRequest(url: url)
-            request.httpMethod = "POST"
-            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-            request.addValue("application/json", forHTTPHeaderField: "Accept")
-            
-            self.isLoggedOut = true
-        } catch {
-            print("Erreur pendant tentative de déconnexion")
-        }
+        AuthRequests.logout()
+        self.isLoggedOut = true
     }
+    
+    
 }

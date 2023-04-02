@@ -10,7 +10,7 @@ import Foundation
 class ModifierDisponibilitesViewModel: ObservableObject {
     @Published var affectationsVM: AffectationListViewModel
     
-    init(benevole: BenevoleModel) {
-        self.affectationsVM = AffectationListViewModel(affectations: benevole.affectations)
+    init(affectations: AffectationListViewModel) {
+        self.affectationsVM = affectations
     }
 }

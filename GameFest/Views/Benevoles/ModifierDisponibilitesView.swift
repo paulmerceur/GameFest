@@ -14,8 +14,8 @@ struct ModifierDisponibilitesView: View {
     
     @ObservedObject var viewModel: ModifierDisponibilitesViewModel
     
-    init(benevole: BenevoleModel) {
-        self.viewModel = ModifierDisponibilitesViewModel(benevole: benevole)
+    init(affectations: AffectationListViewModel) {
+        self.viewModel = ModifierDisponibilitesViewModel(affectations: affectations)
     }
     
     var body: some View {

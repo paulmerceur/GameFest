@@ -25,7 +25,7 @@ struct ListeFestivalsView: View {
                 .fontWeight(.bold)
             List(viewModel.festivals) { festival in
                 if viewModel.benevole.isAdmin {
-                    NavigationLink(destination: AdminDashboardView()) {
+                    NavigationLink(destination: AdminDashboardView(festival: festival)) {
                         VStack(alignment: .leading) {
                             Text(festival.nom)
                                 .font(.headline)
@@ -47,27 +47,40 @@ struct ListeFestivalsView: View {
                         }
                     }
                 }
+            }.onAppear{self.viewModel.objectWillChange.send()}
+            
+            // Créer un festival
+            if viewModel.benevole.isAdmin {
+                NavigationLink(destination: CreateFestivalView(listeFestivals: self.viewModel)) {
+                    Text("Ajouter un festival")
+                        .fontWeight(.semibold)
+                        .frame(minWidth: 0, maxWidth: .infinity)
+                        .padding()
+                        .foregroundColor(.white)
+                        .background(Color.blue)
+                        .cornerRadius(10)
+                        .padding(.horizontal, 20)
+                }
             }
-            .navigationBarTitle("", displayMode: .inline)
-            .navigationBarBackButtonHidden(true)
-            .navigationBarHidden(true)
+            
+            // Déconnexion
+            Button(action: viewModel.logout) {
+                Text("Déconnexion")
+                    .font(.headline)
+                    .foregroundColor(.white)
+                    .padding()
+                    .frame(maxWidth: .infinity)
+                    .background(Color.red)
+                    .cornerRadius(10)
+            }
+            .padding(.horizontal)
+            
+            NavigationLink("", destination: LoginView(), isActive: $viewModel.isLoggedOut)
         }
+        .navigationBarTitle("", displayMode: .inline)
+        .navigationBarHidden(true)
         .background(Color.adaptiveBackground(colorScheme: colorScheme))
     }
+
     
-    struct ListeFestivalsView_Previews: PreviewProvider {
-        static var previews: some View {
-            ListeFestivalsView(benevole: BenevoleModel(prenom: "Paul", nom: "Merceur", email: "", isAdmin: false, affectations: [
-                AffectationViewModel(model: AffectationModel(zone: "Zone 1", creneau: Creneau(date: "2023-03-20", horaires: "10:00 - 12:00"), isDispo: true)),
-                AffectationViewModel(model: AffectationModel(zone: "Zone 2", creneau: Creneau(date: "2023-03-21", horaires: "10:00 - 12:00"), isDispo: false)),
-                AffectationViewModel(model: AffectationModel(zone: "Zone 3", creneau: Creneau(date: "2023-03-19", horaires: "10:00 - 12:00"), isDispo: true)),
-                AffectationViewModel(model: AffectationModel(zone: "Zone 2", creneau: Creneau(date: "2023-03-20", horaires: "12:00 - 14:00"), isDispo: true)),
-                AffectationViewModel(model: AffectationModel(zone: "Zone 1", creneau: Creneau(date: "2023-03-21", horaires: "12:00 - 14:00"), isDispo: false)),
-                AffectationViewModel(model: AffectationModel(zone: "Zone 4", creneau: Creneau(date: "2023-03-19", horaires: "12:00 - 14:00"), isDispo: true)),
-                AffectationViewModel(model: AffectationModel(zone: "Zone 4", creneau: Creneau(date: "2023-03-22", horaires: "10:00 - 12:00"), isDispo: true)),
-                AffectationViewModel(model: AffectationModel(zone: "Zone 3", creneau: Creneau(date: "2023-03-20", horaires: "14:00 - 16:00"), isDispo: true)),
-                AffectationViewModel(model: AffectationModel(zone: "Zone 1", creneau: Creneau(date: "2023-03-20", horaires: "16:00 - 18:00"), isDispo: true)),
-            ]))
-        }
-    }
 }

@@ -13,13 +13,9 @@ struct BenevoleDashboardView: View {
     @Environment(\.colorScheme) var colorScheme
     
     @StateObject private var viewModel: BenevoleDashboardViewModel
-    private var festival: FestivalModel
-    
-    @State private var isLoggedOut = false
     
     init(benevole: BenevoleModel, festival: FestivalModel) {
-        self._viewModel = StateObject(wrappedValue: BenevoleDashboardViewModel(benevole: benevole))
-        self.festival = festival
+        self._viewModel = StateObject(wrappedValue: BenevoleDashboardViewModel(benevole: benevole, festival: festival))
     }
     
     var body: some View {
@@ -39,14 +35,14 @@ struct BenevoleDashboardView: View {
                 List {
                     ForEach(viewModel.affectationsVM.affectations, id: \.id) { affectation in
                         if affectation.isDispo {
-                            NavigationLink(destination: ModifierAffectationView(affectation: affectation)) {
+                            NavigationLink(destination: ModifierAffectationView(affectation: affectation, festival: viewModel.festival)) {
                                 VStack(alignment: .leading) {
-                                    if affectation.zone.isEmpty {
+                                    if affectation.zone.nom.isEmpty {
                                         Text("Pas affecté")
                                             .font(.headline)
                                             .foregroundColor(.red)
                                     } else {
-                                        Text(affectation.zone)
+                                        Text(affectation.zone.nom)
                                             .font(.headline)
                                     }
                                     HStack {
@@ -74,7 +70,7 @@ struct BenevoleDashboardView: View {
                     }
                 }
                 .onAppear{self.viewModel.objectWillChange.send()}
-                NavigationLink(destination: ModifierDisponibilitesView(benevole: viewModel.benevole)) {
+                NavigationLink(destination: ModifierDisponibilitesView(affectations: viewModel.affectationsVM)) {
                     Text("Modifier mes disponibilités")
                         .font(.headline)
                         .foregroundColor(.white)

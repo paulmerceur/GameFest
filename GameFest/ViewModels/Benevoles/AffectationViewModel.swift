@@ -19,41 +19,54 @@ class AffectationViewModel: AffectationObserver, Identifiable, ObservableObject,
         self.observers.append(obs)
     }
     
-    let id = UUID()
+    let id: Int
+    public let benevole: BenevoleModel
     public let creneau: Creneau
     
     // Published variables
-    @Published var zone: String {
+    @Published var zone: Zone {
         didSet {
             model.zone = zone
             for o in observers { o.vmupdated() }
+            self.updateAPI()
         }
     }
     @Published var isDispo: Bool {
         didSet {
             model.isDispo = isDispo
             for o in observers { o.vmupdated() }
+            self.updateAPI()
         }
     }
     
+    // Update l'affectation dans l'API
+    func updateAPI() {
+        AffectationRequests.updateAffectation(affectation: self.model) { (error) in
+            if let error = error {
+                print("Erreur: \(error.localizedDescription)")
+            } else {
+                print("Affectation updated")
+            }
+        }
+    }
+
+    
     // Update Functions
-    func update(zone: String) {
+    func update(zone: Zone) {
         if (self.zone != zone) {
             self.zone = zone
         }
-        // Appel API pour mettre à jour la zone dans la base de données
-        // TODO: Implémenter l'appel API
     }
     func update(isDispo: Bool) {
         if (self.isDispo != isDispo) {
             self.isDispo = isDispo
         }
-        // Appel API pour mettre à jour la zone dans la base de données
-        // TODO: Implémenter l'appel API
     }
     
     init(model: AffectationModel) {
         self.model = model
+        self.id = model.id
+        self.benevole = model.benevole
         self.zone = model.zone
         self.creneau = model.creneau
         self.isDispo = model.isDispo

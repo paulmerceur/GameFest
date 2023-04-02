@@ -8,22 +8,15 @@
 import Foundation
 
 protocol BenevoleObserver {
-    func update(affectations: [AffectationViewModel])
 }
 
-class BenevoleModel: Equatable {
+class BenevoleModel: Equatable, Hashable, Encodable {
     
+    public var id: String
     public var prenom: String
     public var nom: String
     public var email: String
     public var isAdmin: Bool
-    public var affectations: [AffectationViewModel] {
-        didSet {
-            for o in observers {
-                o.update(affectations: self.affectations)
-            }
-        }
-    }
     
     private var observers : [BenevoleObserver] = []
     public func register(_ obs: BenevoleObserver) {
@@ -31,28 +24,47 @@ class BenevoleModel: Equatable {
     }
     
     
-    init(prenom: String, nom: String, email: String, isAdmin: Bool, affectations: [AffectationViewModel]) {
+    init(id: String, prenom: String, nom: String, email: String, isAdmin: Bool) {
+        self.id = id
         self.prenom = prenom
         self.nom = nom
         self.email = email
         self.isAdmin = isAdmin
-        self.affectations = affectations
     }
     
     init() {
+        self.id = ""
         self.prenom = ""
         self.nom = ""
         self.email = ""
         self.isAdmin = false
-        self.affectations = []
+    }
+    
+    // Encodable
+    enum CodingKeys: String, CodingKey {
+        case id
+        case prenom
+        case nom
+        case email
+        case isAdmin
+    }
+    
+    required init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        id = try values.decode(String.self, forKey: .id)
+        prenom = try values.decode(String.self, forKey: .prenom)
+        nom = try values.decode(String.self, forKey: .nom)
+        email = try values.decode(String.self, forKey: .email)
+        isAdmin = try values.decode(Bool.self, forKey: .isAdmin)
     }
     
     // Equatable
     static func == (lhs: BenevoleModel, rhs: BenevoleModel) -> Bool {
-        return lhs.prenom == rhs.prenom &&
-               lhs.nom == rhs.nom &&
-               lhs.email == rhs.email &&
-               lhs.isAdmin == rhs.isAdmin &&
-               lhs.affectations == rhs.affectations
+        return lhs.id == rhs.id
+    }
+    
+    // Hashable
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
     }
 }

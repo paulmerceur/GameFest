@@ -1,48 +1,36 @@
 //
-//  ModifierAffectationView.swift
+//  ModifierZoneView.swift
 //  GameFest
 //
-//  Created by Paul Merceur on 24/03/2023.
+//  Created by Paul Merceur on 01/04/2023.
 //
 
 import Foundation
 import SwiftUI
 
-struct ModifierAffectationView: View {
+struct ModifierZoneView: View {
     @Environment(\.presentationMode) var presentationMode
     @Environment(\.colorScheme) var colorScheme
 
-    @ObservedObject var viewModel: ModifierAffectationViewModel
-    @State var zone: Zone
-    
-    init(affectation: AffectationViewModel, festival: FestivalModel) {
-        self.viewModel = ModifierAffectationViewModel(affectation: affectation, festival: festival)
-        self._zone = State(initialValue: affectation.zone)
+    @ObservedObject var viewModel: ModifierZoneViewModel
+
+    init(zone: Zone) {
+        self.viewModel = ModifierZoneViewModel(zone:zone)
     }
 
     var body: some View {
         VStack {
-            VStack(alignment: .leading) {
-                Text(viewModel.affectationVM.creneau.date)
-                    .font(.headline)
-                Text(viewModel.affectationVM.creneau.horaires)
-                    .font(.subheadline)
-            }
-            .padding()
+            Text(viewModel.zone.nom)
+                .font(.title)
+                .padding()
+            
+            Stepper("Bénévoles nécessaires: \(viewModel.nbBenevolesMin)", value: $viewModel.nbBenevolesMin)
 
-            List(viewModel.zones, id: \.self) { zone in
+            List(viewModel.affectations) { affectation in
                 HStack {
-                    Text(zone.nom)
-                    Spacer()
-                    if self.zone == zone {
-                        Image(systemName: "checkmark")
-                            .foregroundColor(.blue)
-                    }
+                    Text(String(affectation.benevole.prenom) + " " + String(affectation.benevole.nom))
                 }
                 .contentShape(Rectangle())
-                .onTapGesture {
-                    self.zone = zone
-                }
             }
 
             HStack {
@@ -61,7 +49,7 @@ struct ModifierAffectationView: View {
 
                 // Bouton Valider
                 Button(action: {
-                    viewModel.affectationVM.zone = self.zone
+                    viewModel.updateNbBenevolesMin()
                     presentationMode.wrappedValue.dismiss()
                 }) {
                     Text("Valider")
@@ -77,8 +65,6 @@ struct ModifierAffectationView: View {
             Spacer()
         }
         .background(Color.adaptiveBackground(colorScheme: colorScheme))
-        .navigationBarTitle("Modifier Affectation", displayMode: .inline)
+        .navigationBarTitle("Modifier Zone", displayMode: .inline)
     }
 }
-
-
